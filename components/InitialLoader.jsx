@@ -25,7 +25,7 @@ export default function Canvas() {
                 this.size = 0;
                 this.targetSize = Math.random() * 2.5;
                 this.speed = Math.random() * 0.02 + 0.005;
-                this.growthRate = this.targetSize / 300;
+                this.growthRate = this.targetSize / 250;
             }
 
             draw() {
@@ -66,7 +66,7 @@ export default function Canvas() {
     }, [modeParticleColour]); // Include modeParticleColour as a dependency
 
     const fadeIn = {
-        hidden: { opacity: 0},
+        hidden: { opacity: 0, },
         visible: {
             opacity: 1,
             transition: {

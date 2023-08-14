@@ -43,33 +43,52 @@ const Canvas = () => {
   }, [starColour]);
 
   const fadeIn = {
-    hidden: { opacity: 0, filter: 'blur(16px)'},
+    hidden: { opacity: 0, filter: 'blur(16px)' },
     visible: {
-        opacity: 1,
-        filter: 'blur(0px)',
-        transition: {
-            type: 'tween',
-            ease: 'easeIn',
-            duration: 0.75
-        }
+      opacity: 1,
+      filter: 'blur(0px)',
+      transition: {
+        type: 'tween',
+        ease: 'easeIn',
+        duration: 0.75,
+        staggerChildren: 0.5  // Here's the key part
+      }
     }
   };
-
+  
+  const childVariant = {
+    hidden: { 
+      opacity: 0, 
+      filter: 'blur(0.5px)', 
+      y: 10 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        type: 'tween',
+        // ease: 'easeIn',
+        duration: 0.75
+      }
+    }
+  };
+  
   return (
     <>
       <motion.div
-        className="text-[#22223b] w-[75%] lg:w-[50%] text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 dark:text-[#f5EBE0] bg-[#f5EBE0] dark:bg-[#22223b] p-5 transition-colors duration-500"
+        className="text-[#22223b] w-[90%] lg:w-[50%] text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 dark:text-[#f5EBE0] bg-[#f5EBE0] dark:bg-[#22223b] lg:p-5 p-2 transition-colors duration-500"
         initial="hidden"
         animate="visible"
         variants={fadeIn}
       >
-        <p className="playfair italic">01.welcome</p>
-        <h1 className="xl:text-5xl lg:text-4xl text-3xl mt-1">
+        <motion.p variants={childVariant} className="playfair italic">01.welcome</motion.p>
+        <motion.h1 variants={childVariant} className="xl:text-5xl lg:text-4xl text-3xl mt-1">
           I help businesses and individuals stand out from the crowd with exceptionally good websites
-        </h1>
-        <button className="py-1 px-3 mt-3 rounded-lg dark:border-[#f5EBE0] border border-[#22223b] dark:text-[#f5EBE0] text-[#22223b]">
+        </motion.h1>
+        <motion.button variants={childVariant} className="py-1 px-3 mt-3 rounded-lg dark:border-[#f5EBE0] border border-[#22223b] dark:text-[#f5EBE0] text-[#22223b]">
           Scroll
-        </button>
+        </motion.button>
       </motion.div>
       <canvas
         ref={canvasRef}
@@ -79,6 +98,7 @@ const Canvas = () => {
       ></canvas>
     </>
   );
+  
 };
 
 export default Canvas;
