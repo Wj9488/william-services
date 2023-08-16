@@ -76,16 +76,16 @@ const Canvas = () => {
   
   return (
     <>
-      <motion.div
+      {/* <motion.div
         className="text-[#22223b] w-[90%] lg:w-[50%] text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 dark:text-[#f5EBE0] bg-[#f5EBE0] dark:bg-[#22223b] lg:p-5 p-2 transition-colors duration-500"
         initial="hidden"
         animate="visible"
         variants={fadeIn}
       >
         <motion.p variants={childVariant} className="playfair italic">01.welcome</motion.p>
-        <motion.h1 variants={childVariant} className="xl:text-5xl lg:text-4xl text-3xl mt-1">
+        <motion.h2 variants={childVariant} className="xl:text-5xl lg:text-4xl text-3xl mt-1">
           I help businesses and individuals stand out from the crowd with exceptionally good websites
-        </motion.h1>
+        </motion.h2>
         <motion.button variants={childVariant} className="py-1 px-3 mt-3 rounded-lg dark:border-[#f5EBE0] border border-[#22223b] dark:text-[#f5EBE0] text-[#22223b]">
           Scroll
         </motion.button>
@@ -95,7 +95,32 @@ const Canvas = () => {
         style={{ background: "transparent" }}
         width={window.innerWidth}
         height={window.innerHeight}
-      ></canvas>
+      ></canvas> */}
+      <motion.div
+        className="text-[#22223b] min-h-[95vh] text-center dark:text-[#f5EBE0] bg-[#f5EBE0] dark:bg-[#22223b] lg:p-5 p-2 transition-colors duration-500 flex items-center justify-center"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
+        <div className="xl:w-[50%] lg:w-[65%] w-[90%]">
+          <motion.p variants={childVariant} className="playfair italic">01.welcome</motion.p>
+          <motion.h2 variants={childVariant} className="xl:text-5xl lg:text-4xl text-3xl mt-1">
+            I help businesses and individuals stand out from the crowd with exceptionally good websites
+          </motion.h2>
+          <motion.button variants={childVariant} className="py-1 px-3 mt-3 rounded-lg dark:border-[#f5EBE0] border border-[#22223b] dark:text-[#f5EBE0] text-[#22223b]">
+            Scroll
+          </motion.button> 
+          <div className="flex items-center justify-center">
+            <canvas
+              ref={canvasRef}
+              style={{ background: "transparent" }}
+              className="border border-[#22223b] rounded-[100px] mt-6 dark:border-[#f5EBE0]"
+              width={200}
+              height={300}
+            ></canvas>
+          </div>     
+        </div>  
+      </motion.div>
     </>
   );
   

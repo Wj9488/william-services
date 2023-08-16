@@ -4,9 +4,30 @@ import { motion } from "framer-motion";
 export default function Canvas() {
     const canvasRef = useRef(null);
     const [modeParticleColour, setModeParticleColour] = useState("#22223b");
+    const [loadingPercentage, setLoadingPercentage] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
-        // Check for the dark mode class on the HTML element
+        // Fallback in case p el is rendered with 100 as the value
+        if (loadingPercentage === 100) return;
+
+        const loadingPercentageInterval = setInterval(() => {
+            setLoadingPercentage(prevPercentage => {
+                const newPercentage = prevPercentage + 1;
+
+                if (newPercentage >= 100) {
+                    clearInterval(loadingPercentageInterval);
+                    return 100;
+                }
+
+                return newPercentage;
+            });
+        }, 20); // Updating every 28 milliseconds
+
+        return () => clearInterval(loadingPercentageInterval); // Interval cleanup
+    }, [loadingPercentage]);
+
+    useEffect(() => {
         if (document.documentElement.classList.contains('dark')) {
           setModeParticleColour("#f5EBE0");
         } else {
@@ -16,7 +37,7 @@ export default function Canvas() {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         let particleNumber = 15;
-        let particleRingWidth = window.innerWidth / (window.innerWidth < 1000 ? 5 : 10);
+        let particleRingWidth = window.innerWidth / (window.innerWidth < 1000 ? 4 : 10);
 
         class Particle {
             constructor(angle) {
@@ -77,20 +98,42 @@ export default function Canvas() {
         }
       };
 
+      useEffect(() => {
+        const loaderTimeout = setTimeout(() => {
+            setIsVisible(false);
+        }, 2750);
+    
+        return () => clearTimeout(loaderTimeout);  // Timeout cleanup
+    }, []);
+
+      const fadeOut = {
+        visible: { opacity: 1 },
+        hidden: { 
+            opacity: 0,
+            transition: {
+                duration: 0.25
+            }
+        }
+    };
+
     return (
-        <div className="">
+        <motion.div 
+        initial="visible" 
+        animate={isVisible ? "visible" : "hidden"} 
+        variants={fadeOut}
+        >
             <motion.p 
                 className="text-[#22223b] text-sm absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 dark:text-[#f5EBE0]"
                 initial="hidden"
                 animate="visible"
                 variants={fadeIn}
             >
-                <span className="font-semibold">william</span>.loading
+                <span className="font-semibold">william</span>.loading: <span className="">{loadingPercentage}%</span>
             </motion.p>
             <canvas
                 className="bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[-10]"
                 ref={canvasRef}
             ></canvas>
-        </div>
+        </motion.div>
     );
 }
