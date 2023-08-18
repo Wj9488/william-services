@@ -3,10 +3,10 @@
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion"
 
-const Canvas = () => {
+const Canvas = ({ currentColour }) => {
   const canvasRef = useRef(null);
-  const starCount = 200; // You can change this value later
-  const starColour = "#22223b"; // You can change this value later
+  const starCount = 200;
+  const starColour = currentColour; 
 
   useEffect(() => {
     const canvas = canvasRef.current;

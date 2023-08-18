@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-const Nav = () => {
+const Nav = ({ handleCanvasDarkMode }) => {
   const [time, setTime] = useState(getCurrentTime());
   const [darkMode, setDarkMode] = useState(false);
 
   function handleDarkClick() {
     setDarkMode(!darkMode);
+    handleCanvasDarkMode("#f5EBE0")
   }
   useEffect(() => {
     if (darkMode) {

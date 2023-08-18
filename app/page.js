@@ -8,6 +8,12 @@ import Transition from '@/components/utils/Transition';
 
 export default function Home() {
   const [initialLoading, setInitialLoading] = useState(true);
+  const [canvasColour, setCanvasColour] = useState("#22223b");
+
+  const handleCanvasDarkMode = () => {
+    // If current color is #22223b, switch to #f5EBE0. Otherwise, revert back to #22223b.
+    setCanvasColour(prevColour => prevColour === "#22223b" ? "#f5EBE0" : "#22223b");
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,8 +31,8 @@ export default function Home() {
       : 
       <>
         <Transition>
-          <Nav />
-          <Header />
+          <Nav handleCanvasDarkMode={handleCanvasDarkMode}/>
+          <Header currentColour={canvasColour}/>
         </Transition>
       </>}
     </main>

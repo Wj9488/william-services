@@ -9,7 +9,7 @@ const Transition = ({ children }) => {
     <AnimatePresence mode="wait">
       <anim.div
         initial={{ opacity: 0, rotate: 0 }}
-        animate={{ opacity: [0, 1, 1], y: -7.5, rotate: 0 }}
+        animate={{ opacity: [0, 1, 1], y: -5, rotate: 0 }}
         exit={{ opacity: 0, y: 0, rotate: -0 }}
         transition={{
           duration: 2,

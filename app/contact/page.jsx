@@ -1,10 +1,14 @@
+import Transition from "@/components/utils/Transition"
+
 export const metadata = { 
   title: "Contact",
 }
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <Transition>
+      <div>Contact</div>
+    </Transition>
   )
 }
 
