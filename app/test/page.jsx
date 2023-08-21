@@ -38,7 +38,7 @@ const TestPage = () => {
                             initial={{ width: 0 }}
                             animate={{ width: `${swipeProgress}%` }}
                             transition={{ type: "spring", stiffness: 100 }}
-                            className="bg-neutral-900 h-2 rounded-full"
+                            className="bg-neutral-800 h-2 rounded-full"
                         ></motion.div>
                     </div>
                 </div>
