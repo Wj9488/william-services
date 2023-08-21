@@ -70,9 +70,8 @@ const TestPage = () => {
                     drag="x" 
                     dragConstraints={{ left: 0, right: 100 }} 
                     onDrag={(e, info) => handleSwipe(info.point.x / window.innerWidth)}
-                    className="bg-red-500 p-4 rounded cursor-pointer"
+                    className="min-h-[100dvh] w-1/2 bg-red-400"
                 >
-                    Swipe Me
                 </motion.div>
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                     <div className="h-2 transparent rounded-full relative w-60 border border-neutral-900">
